@@ -12,7 +12,7 @@ With it, you can turn an ordinary in-game object into a fully functional drawing
 
 • **Image and GIF support** — display images and GIFs on the canvas using their file URLs.
 
-• **Drawing tools** — a convenient set of tools including a fill tool, eyedropper, eraser, brush size adjustment, and HEX color selection.
+• **Drawing tools** — a convenient set of tools including a  eyedropper, eraser, brush size adjustment, and HEX color selection.
 
 • **Extensive configuration** — fine-tune the plugin's settings to suit your server's needs and optimize performance.
 
