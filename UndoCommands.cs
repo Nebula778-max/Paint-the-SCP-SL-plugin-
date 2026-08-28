@@ -32,13 +32,16 @@ namespace SCPCanvasPaint.Commands
             {
                 canvas = Plugin.Singleton.CanvasManager.ActiveCanvases.Find(c =>
                 {
-                    for (int x = 0; x < c.Size; x++)
-                        for (int y = 0; y < c.Size; y++)
+                    int width = c.Grid.GetLength(0);
+                    int height = c.Grid.GetLength(1);
+                    for (int x = 0; x < width; x++)
+                        for (int y = 0; y < height; y++)
                             if (c.Grid[x, y] == firstPrimitive) return true;
                     return false;
                 });
                 if (canvas != null) break;
             }
+
 
             if (canvas == null)
             {
@@ -65,14 +68,17 @@ namespace SCPCanvasPaint.Commands
                 else
                 {
                     int targetX = -1, targetY = -1;
-                    for (int x = 0; x < canvas.Size; x++)
+                    int width = canvas.Grid.GetLength(0);
+                    int height = canvas.Grid.GetLength(1);
+                    for (int x = 0; x < width; x++)
                     {
-                        for (int y = 0; y < canvas.Size; y++)
+                        for (int y = 0; y < height; y++)
                         {
                             if (canvas.Grid[x, y] == p) { targetX = x; targetY = y; break; }
                         }
                         if (targetX != -1) break;
                     }
+
 
                     if (targetX != -1)
                     {
@@ -113,13 +119,16 @@ namespace SCPCanvasPaint.Commands
             {
                 canvas = Plugin.Singleton.CanvasManager.ActiveCanvases.Find(c =>
                 {
-                    for (int x = 0; x < c.Size; x++)
-                        for (int y = 0; y < c.Size; y++)
+                    int width = c.Grid.GetLength(0);
+                    int height = c.Grid.GetLength(1);
+                    for (int x = 0; x < width; x++)
+                        for (int y = 0; y < height; y++)
                             if (c.Grid[x, y] == firstPrimitive) return true;
                     return false;
                 });
                 if (canvas != null) break;
             }
+
 
             if (canvas == null)
             {
@@ -145,14 +154,17 @@ namespace SCPCanvasPaint.Commands
                 else
                 {
                     int targetX = -1, targetY = -1;
-                    for (int x = 0; x < canvas.Size; x++)
+                    int width = canvas.Grid.GetLength(0);
+                    int height = canvas.Grid.GetLength(1);
+                    for (int x = 0; x < width; x++)
                     {
-                        for (int y = 0; y < canvas.Size; y++)
+                        for (int y = 0; y < height; y++)
                         {
                             if (canvas.Grid[x, y] == p) { targetX = x; targetY = y; break; }
                         }
                         if (targetX != -1) break;
                     }
+
 
                     if (targetX != -1)
                     {

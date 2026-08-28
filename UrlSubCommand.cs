@@ -118,18 +118,19 @@ namespace SCPCanvasPaint.Commands
                         {
                             using (var singleFrameImage = image.Frames.CloneFrame(0))
                             {
-                                singleFrameImage.Mutate(x => x.Resize(size, size));
-                                for (int x = 0; x < size; x++)
+                                singleFrameImage.Mutate(x => x.Resize(width, height));
+                                for (int x = 0; x < width; x++)
                                 {
-                                    for (int y = 0; y < size; y++)
+                                    for (int y = 0; y < height; y++)
                                     {
-                                        Rgba32 pixel = singleFrameImage[x, size - 1 - y];
+                                        Rgba32 pixel = singleFrameImage[x, height - 1 - y];
                                         hexColors.Add("#" + ColorUtility.ToHtmlStringRGB(new Color(pixel.R / 255f, pixel.G / 255f, pixel.B / 255f, pixel.A / 255f)));
                                     }
                                 }
                             }
                         }
                     }
+
                     catch (Exception ex)
                     {
                         Log.Error($"[SCPCanvasPaint] Ошибка обработки статичного кадра: {ex.Message}");

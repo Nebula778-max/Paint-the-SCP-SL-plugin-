@@ -82,7 +82,7 @@ namespace SCPCanvasPaint.Commands
                 }
 
                 byte[] bytes = webRequest.downloadHandler.data;
-                List<GifFrame> gifFrames = GifDecoder.Decode(bytes, canvas.Size);
+                List<GifFrame> gifFrames = GifDecoder.Decode(bytes, canvas.Size, canvas.Ratio);
 
                 if (gifFrames == null || gifFrames.Count == 0)
                 {
@@ -96,14 +96,18 @@ namespace SCPCanvasPaint.Commands
                 float startOffsetY = -(canvas.PhysicalSize / canvas.Ratio) / 2f;
                 int currentFrameIdx = 0;
 
-                Vector3[,] precalculatedLocalPositions = new Vector3[canvas.Size, canvas.Size];
-                for (int x = 0; x < canvas.Size; x++)
+                int canvasWidth = canvas.Grid.GetLength(0);
+                int canvasHeight = canvas.Grid.GetLength(1);
+
+                Vector3[,] precalculatedLocalPositions = new Vector3[canvasWidth, canvasHeight];
+                for (int x = 0; x < canvasWidth; x++)
                 {
-                    for (int y = 0; y < canvas.Size; y++)
+                    for (int y = 0; y < canvasHeight; y++)
                     {
                         precalculatedLocalPositions[x, y] = new Vector3(startOffsetX + (x * offset) + (offset / 2f), startOffsetY + (y * offset * (1f / canvas.Ratio)) + ((offset * (1f / canvas.Ratio)) / 2f), 0);
                     }
                 }
+
 
                 Transform rootTransform = canvas.RootObject.transform;
                 Vector3 hiddenPos = new Vector3(0f, -1000f, 0f);
@@ -131,14 +135,15 @@ namespace SCPCanvasPaint.Commands
 
                     GifFrame frame = gifFrames[currentFrameIdx];
 
-                    for (int y = 0; y < canvas.Size; y++)
+                    for (int y = 0; y < canvasHeight; y++)
                     {
-                        for (int x = 0; x < canvas.Size; x++)
+                        for (int x = 0; x < canvasWidth; x++)
                         {
                             Primitive p = canvas.Grid[x, y];
                             if (p == null) continue;
 
-                            int pixelIdx = (y * canvas.Size) + x;
+                            int pixelIdx = (y * canvasWidth) + x;
+
                             if (pixelIdx < 0 || pixelIdx >= frame.Pixels.Length) continue;
 
                             Color pixelColor = frame.Pixels[pixelIdx];

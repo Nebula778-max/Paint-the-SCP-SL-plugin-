@@ -17,37 +17,44 @@ namespace SCPCanvasPaint
 
     public static class GifDecoder
     {
-        public static List<GifFrame> Decode(byte[] bytes, int targetSize)
+        public static List<GifFrame> Decode(byte[] bytes, int targetSize, float ratio)
         {
             List<GifFrame> frames = new List<GifFrame>();
             try
             {
                 using (var image = SharpImage.Load<Rgba32>(bytes))
                 {
-                    int totalPixels = targetSize * targetSize;
+                    int targetWidth = targetSize;
+                    int targetHeight = ratio >= 1f ? Mathf.RoundToInt(targetSize / ratio) : targetSize;
+                    if (targetWidth <= 0) targetWidth = 1;
+                    if (targetHeight <= 0) targetHeight = 1;
+
+                    int totalPixels = targetWidth * targetHeight;
 
                     for (int i = 0; i < image.Frames.Count; i++)
                     {
                         var frame = image.Frames[i];
                         using (var singleFrameImage = image.Frames.CloneFrame(i))
                         {
-                            singleFrameImage.Mutate(x => x.Resize(targetSize, targetSize));
+                            singleFrameImage.Mutate(x => x.Resize(targetWidth, targetHeight));
 
                             Color[] framePixels = new Color[totalPixels];
 
-                            for (int x = 0; x < targetSize; x++)
+                            for (int x = 0; x < targetWidth; x++)
                             {
-                                for (int y = 0; y < targetSize; y++)
+                                for (int y = 0; y < targetHeight; y++)
                                 {
-                                    Rgba32 pixel = singleFrameImage[x, targetSize - 1 - y];
+                                    Rgba32 pixel = singleFrameImage[x, targetHeight - 1 - y];
+
+                                    int index = x + (y * targetWidth);
 
                                     if (pixel.A == 0)
                                     {
-                                        framePixels[x + y * targetSize] = Color.clear;
+                                        framePixels[index] = Color.clear;
                                     }
                                     else
                                     {
-                                        framePixels[x + y * targetSize] = new Color(
+                                        framePixels[index] = new Color(
                                             pixel.R / 255f,
                                             pixel.G / 255f,
                                             pixel.B / 255f,
