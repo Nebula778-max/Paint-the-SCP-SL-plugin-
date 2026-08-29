@@ -18,7 +18,7 @@ The plugin’s commands work through the standard SCP: Secret Laboratory console
 
 Create, draw, experiment — and give your players the opportunity to leave something of their own behind on your server.
 
-
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Этот плагин для SCP: Secret Laboratory на базе EXILED позволит раскрыть творческий потенциал игроков вашего сервера.
 
