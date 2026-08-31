@@ -12,7 +12,7 @@ With it, you can turn an ordinary in-game object into a fully functional canvas,
 
 • Extensive configuration options that allow you to adapt the plugin to your server’s needs and optimize its performance.
 
-All available commands can be viewed in the SCP: Secret Laboratory console using the `.canvas_help` command.
+All available commands can be viewed in the SCP: Secret Laboratory console using the ".canvas help" command. If you need to change the language, enter: ".canvas lang".
 
 The plugin’s commands work through the standard SCP: Secret Laboratory console and are divided into two categories: commands available to regular players and commands available exclusively to administrators.
 
@@ -34,7 +34,7 @@ Create, draw, experiment — and give your players the opportunity to leave some
 
 • Тонкая настройка параметров плагина, позволяющая адаптировать его под особенности вашего сервера и оптимизировать производительность.
 
-Все доступные команды можно посмотреть в консоли SCP: Secret Laboratory с помощью команды ".canvas_help".
+Все доступные команды можно посмотреть в консоли SCP: Secret Laboratory с помощью команды ".canvas help". Если вам нужно сменить язык, введите: ".canvas lang".
 
 Команды плагина работают через стандартную консоль SCP: Secret Laboratory и разделены на две категории: доступные обычным игрокам и доступные только администраторам.
 
